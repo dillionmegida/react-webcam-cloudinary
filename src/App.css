@@ -1,0 +1,108 @@
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.webcam {
+  width: 100%;
+  flex: 1;
+  position: relative;
+}
+
+.preview {
+  position: relative;
+  flex: 1.2;
+  width: 100%;
+  aspect-ratio: 1920 / 1080;
+}
+
+video {
+  width: 100%;
+  border-radius: 3px;
+  border: 4px solid #594459;
+}
+
+button {
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 3px;
+  border: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  border: 4px solid #594459;
+  border-radius: 3px;
+}
+
+.preview.no-capture img {
+  filter: grayscale(1);
+}
+
+.capture-btn,
+.upload-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  font-size: 0.7em;
+  transition: 300ms;
+}
+
+.capture-btn {
+  background-color: rgb(101, 123, 175);
+  color: white;
+}
+
+.capture-btn:hover {
+  background-color: rgb(69, 87, 131);
+}
+
+.upload-btn {
+  background-color: rgb(220, 220, 101);
+}
+
+.upload-btn:not(:disabled):hover {
+  background-color: rgb(173, 173, 79);
+}
+
+.upload-btn:disabled {
+  cursor: not-allowed;
+}
+
+.uploading-text,
+.uploaded-text {
+  position: absolute;
+  color: rgb(220, 220, 101);
+  display: block;
+  font-size: 0.7em;
+}
+
+.cld-image {
+  max-width: 800px;
+  width: 100%;
+  margin: 50px auto;
+}
+
+.effects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.effects img {
+  border: 2px solid #594459;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.effects img:hover,
+.effects img.active {
+  border-color: rgb(220, 220, 101);
+}
