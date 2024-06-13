@@ -1,33 +1,40 @@
-import ReactWebcam from 'react-webcam'
+import ReactWebcam from "react-webcam"
 
-const videoConstraints = {
-  width: 1920,
-  height: 1080,
-  facingMode: "user",
+const aspectRatios = {
+  landscape: {
+    width: 1920,
+    height: 1080,
+  },
+  portrait: {
+    height: 1920,
+    width: 1080,
+  },
 }
 
-export default function Webcam({setCapturedImage}) {
-  return <div className="webcam">
-  <ReactWebcam
-    mirrored
-    screenshotFormat="image/jpeg"
-    screenshotQuality={1}
-    videoConstraints={videoConstraints}
-  >
-    {({ getScreenshot }) => (
-      <button
-        className="capture-btn"
-        onClick={() => {
-          const imageSrc = getScreenshot({
-            height: 1080,
-            width: 1920,
-          })
-          setCapturedImage(imageSrc)
+export default function Webcam({ setCapturedImage, type = "landscape" }) {
+  return (
+    <div className="webcam">
+      <ReactWebcam
+        mirrored
+        screenshotFormat="image/jpeg"
+        screenshotQuality={1}
+        videoConstraints={{
+          facingMode: "user",
+          ...aspectRatios[type],
         }}
       >
-        Capture photo
-      </button>
-    )}
-  </ReactWebcam>
-</div>
+        {({ getScreenshot }) => (
+          <button
+            className="capture-btn"
+            onClick={() => {
+              const imageSrc = getScreenshot()
+              setCapturedImage(imageSrc)
+            }}
+          >
+            Capture photo
+          </button>
+        )}
+      </ReactWebcam>
+    </div>
+  )
 }
